@@ -98,7 +98,7 @@ CREATE TABLE IF NOT EXISTS `consol`.`necessidade` (
 
 CREATE TABLE IF NOT EXISTS `consol`.`usuario` (
   `id_usuario` INT NOT NULL auto_increment,
-  `coordernador` TINYINT NULL,
+  `coordenador` TINYINT NULL,
   `nome_usuario` VARCHAR(60) NULL,
   `email` VARCHAR(70) NULL,
   `senha` TEXT NULL,
