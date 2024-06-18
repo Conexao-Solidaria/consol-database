@@ -68,7 +68,7 @@ CREATE TABLE IF NOT EXISTS `consol`.`instituicao` (
   `cep` CHAR(8) NULL,
   `numero_imovel` VARCHAR(10) NULL,
   `descricao` VARCHAR(255) NULL,
-  `foto_perfil` BLOB NULL,
+  `foto_perfil` TEXT NULL,
   PRIMARY KEY (`id_instituicao`)
 );
 
