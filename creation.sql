@@ -72,18 +72,19 @@ CREATE TABLE IF NOT EXISTS `consol`.`instituicao` (
   PRIMARY KEY (`id_instituicao`)
 );
 
-CREATE TABLE IF NOT EXISTS `consol`.`doacoes` (
-  `id_doacoes` INT NOT NULL auto_increment,
+CREATE TABLE IF NOT EXISTS `consol`.`doacao` (
+  `id_doacao` INT NOT NULL auto_increment,
   `peso` DOUBLE(5,2) NULL,
   `descricao` VARCHAR(200) NULL,
   `status_doacao` CHAR(1) NULL,
   `data_doacao` DATETIME NULL,
   `fk_instituicao` INT NOT NULL,
   `fk_donatario` INT NOT NULL,
-  PRIMARY KEY (`id_doacoes`),
+  PRIMARY KEY (`id_doacao`),
     FOREIGN KEY (`fk_instituicao`) REFERENCES `consol`.`instituicao` (`id_instituicao`) ON DELETE CASCADE,
     FOREIGN KEY (`fk_donatario`) REFERENCES `consol`.`donatario` (`id_donatario` ) ON DELETE CASCADE
 );
+
 
 CREATE TABLE IF NOT EXISTS `consol`.`necessidade` (
   `id_necessidade` INT NOT NULL auto_increment,
