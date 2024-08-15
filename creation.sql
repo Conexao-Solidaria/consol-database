@@ -110,8 +110,8 @@ select * from instituicao;
 INSERT INTO instituicao (nome_instituicao, cep, numero_imovel, descricao, foto_perfil)
 VALUES (
     'nomeInstituicao_8445bcfcfc75',
-    'cep_f46e9c13930a',
-    'numeroImovel_e25ea247de25',
+    '01234567',
+    '2524725',
     'descricao_f578e2d88fea',
     'kansdjnasojncoinascoi'
 );
