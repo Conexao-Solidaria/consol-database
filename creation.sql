@@ -5,7 +5,7 @@ USE `consol` ;
 
 
 CREATE TABLE IF NOT EXISTS `consol`.`familia` (
-  `id_familia` INT PRIMARY KEY NOT NULL,
+  `id_familia` INT PRIMARY KEY NOT NULL auto_increment,
   `nome` VARCHAR(60) NULL,
   `cep` VARCHAR(8) NULL,
   `numero_casa` INT NULL,
@@ -15,7 +15,7 @@ CREATE TABLE IF NOT EXISTS `consol`.`familia` (
 ENGINE = InnoDB;
 
 CREATE TABLE IF NOT EXISTS `consol`.`titular` (
-  `id_titular` INT PRIMARY KEY NOT NULL,
+  `id_titular` INT PRIMARY KEY NOT NULL auto_increment,
   `data_cadastro` DATE NULL,
   `nome` VARCHAR(60) NULL,
   `rg` VARCHAR(9) NOT NULL,
@@ -35,7 +35,7 @@ CREATE TABLE IF NOT EXISTS `consol`.`titular` (
 
 
 CREATE TABLE IF NOT EXISTS `consol`.`registroVisita` (
-  `id_registro_visita` INT PRIMARY KEY NOT NULL,
+  `id_registro_visita` INT PRIMARY KEY NOT NULL auto_increment,
   `data_visita` DATE NULL,
   `descricao` TEXT NULL,
   `fk_titular` INT NOT NULL,
@@ -72,7 +72,7 @@ CREATE TABLE IF NOT EXISTS `consol`.`instituicao` (
 );
 
 CREATE TABLE IF NOT EXISTS `consol`.`doacao` (
-  `id_doacoes` INT PRIMARY KEY NOT NULL,
+  `id_doacoes` INT PRIMARY KEY NOT NULL auto_increment,
   `descricao` VARCHAR(200) NULL,
   `status_doacao` CHAR(1) NULL,
   `data_doacao` DATETIME NULL,
@@ -84,7 +84,7 @@ CREATE TABLE IF NOT EXISTS `consol`.`doacao` (
 );
 
 CREATE TABLE IF NOT EXISTS `consol`.`usuario` (
-  `id_usuario` INT PRIMARY KEY NOT NULL,
+  `id_usuario` INT PRIMARY KEY NOT NULL auto_increment,
   `coordernador` TINYINT NULL,
   `nome_usuario` VARCHAR(60) NULL,
   `email` VARCHAR(70) NULL,
