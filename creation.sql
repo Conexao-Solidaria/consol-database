@@ -111,7 +111,7 @@ INSERT INTO instituicao (nome_instituicao, cep, numero_imovel, descricao, foto_p
 VALUES (
     'nomeInstituicao_8445bcfcfc75',
     '01234567',
-    'numeroImovel_e25ea247de25',
+    '2524725',
     'descricao_f578e2d88fea',
     'kansdjnasojncoinascoi'
 );
