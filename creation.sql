@@ -5,21 +5,21 @@ USE `consol` ;
 
 
 CREATE TABLE IF NOT EXISTS `consol`.`familia` (
-  `id_familia` INT NOT NULL auto_increment,
+  `id_familia` INT PRIMARY KEY NOT NULL,
   `nome` VARCHAR(60) NULL,
   `cep` VARCHAR(8) NULL,
   `numero_casa` INT NULL,
   `renda` DOUBLE(8,2) NULL,
-  PRIMARY KEY (`id_familia`)
+  `flag_retirada` TINYINT NULL
 )
 ENGINE = InnoDB;
 
-CREATE TABLE IF NOT EXISTS `consol`.`donatario` (
-  `id_donatario` INT NOT NULL auto_increment,
+CREATE TABLE IF NOT EXISTS `consol`.`titular` (
+  `id_titular` INT PRIMARY KEY NOT NULL,
   `data_cadastro` DATE NULL,
   `nome` VARCHAR(60) NULL,
-  `rg*****` VARCHAR(9) NOT NULL,
-  `cpf****` VARCHAR(11) NULL,
+  `rg` VARCHAR(9) NOT NULL,
+  `cpf` VARCHAR(11) NULL,
   `data_nascimento` DATE NULL,
   `telefone1` VARCHAR(11) NULL,
   `telefone2` VARCHAR(11) NULL,
@@ -28,18 +28,18 @@ CREATE TABLE IF NOT EXISTS `consol`.`donatario` (
   `trabalhando` TINYINT NULL,
   `ocupacao` VARCHAR(45) NULL,
   `fk_familia` INT NOT NULL,
-  PRIMARY KEY (`id_donatario`, `rg*****`),
-    FOREIGN KEY (`fk_familia`) REFERENCES `consol`.`familia` (`id_familia`)
-    ON DELETE CASCADE
-    );
+  FOREIGN KEY (`fk_familia`)
+  REFERENCES `familia` (`id_familia`)
+  ON DELETE CASCADE
+);
 
 
 CREATE TABLE IF NOT EXISTS `consol`.`registroVisita` (
-  `id_registro_visita` INT PRIMARY KEY auto_increment,
-  `data_visita` DATE NOT NULL,
+  `id_registro_visita` INT PRIMARY KEY NOT NULL,
+  `data_visita` DATE NULL,
   `descricao` TEXT NULL,
-  `fk_donatario` INT NOT NULL,
-    FOREIGN KEY (`fk_donatario`) REFERENCES `consol`.`donatario` (`id_donatario`)
+  `fk_titular` INT NOT NULL,
+    FOREIGN KEY (`fk_titular`) REFERENCES `consol`.`titular` (`id_titular`)
     ON DELETE CASCADE
 );
 
@@ -57,55 +57,41 @@ CREATE TABLE IF NOT EXISTS `consol`.`beneficio` (
   `id_beneficio` INT PRIMARY KEY auto_increment,
   `nome` VARCHAR(45) NULL,
   `valor` DOUBLE(7,2) NULL,
-  `fk_donatario` INT NOT NULL,
-    FOREIGN KEY (`fk_donatario`) REFERENCES `consol`.`donatario` (`id_donatario`)
+  `fk_titular` INT NOT NULL,
+    FOREIGN KEY (`fk_titular`) REFERENCES `consol`.`titular` (`id_titular`)
     ON DELETE CASCADE
 );
 
 CREATE TABLE IF NOT EXISTS `consol`.`instituicao` (
-  `id_instituicao` INT NOT NULL auto_increment,
+  `id_instituicao` INT PRIMARY KEY NOT NULL auto_increment,
   `nome_instituicao` VARCHAR(70) NULL,
   `cep` CHAR(8) NULL,
   `numero_imovel` VARCHAR(10) NULL,
   `descricao` VARCHAR(255) NULL,
-  `foto_perfil` TEXT NULL,
-  PRIMARY KEY (`id_instituicao`)
+  `foto_perfil` TEXT NULL
 );
 
 CREATE TABLE IF NOT EXISTS `consol`.`doacao` (
-  `id_doacao` INT NOT NULL auto_increment,
-  `peso` DOUBLE(5,2) NULL,
+  `id_doacoes` INT PRIMARY KEY NOT NULL,
   `descricao` VARCHAR(200) NULL,
   `status_doacao` CHAR(1) NULL,
   `data_doacao` DATETIME NULL,
+  `flag_doacao_entregue` VARCHAR(45) NULL,
   `fk_instituicao` INT NOT NULL,
-  `fk_donatario` INT NOT NULL,
-  PRIMARY KEY (`id_doacao`),
+  `fk_titular` INT NOT NULL,
     FOREIGN KEY (`fk_instituicao`) REFERENCES `consol`.`instituicao` (`id_instituicao`) ON DELETE CASCADE,
-    FOREIGN KEY (`fk_donatario`) REFERENCES `consol`.`donatario` (`id_donatario` ) ON DELETE CASCADE
+    FOREIGN KEY (`fk_titular`) REFERENCES `consol`.`titular` (`id_titular` ) ON DELETE CASCADE
 );
-
-
-CREATE TABLE IF NOT EXISTS `consol`.`necessidade` (
-  `id_necessidade` INT NOT NULL auto_increment,
-  `tipo` VARCHAR(50) NULL,
-  `descricao` VARCHAR(255) NULL,
-  `fk_instituicao` INT NOT NULL,
-  PRIMARY KEY (`id_necessidade`),
-    FOREIGN KEY (`fk_instituicao`)REFERENCES `consol`.`instituicao` (`id_instituicao`)
-    ON DELETE CASCADE
-);
-
 
 CREATE TABLE IF NOT EXISTS `consol`.`usuario` (
-  `id_usuario` INT NOT NULL auto_increment,
-  `coordenador` TINYINT NULL,
+  `id_usuario` INT PRIMARY KEY NOT NULL,
+  `coordernador` TINYINT NULL,
   `nome_usuario` VARCHAR(60) NULL,
   `email` VARCHAR(70) NULL,
   `senha` TEXT NULL,
   `cpf` CHAR(11) NULL,
+  `flag_aprovado` TINYINT NULL,
   `fk_instituicao` INT NOT NULL,
-  PRIMARY KEY (`id_usuario`, `fk_instituicao`),
     FOREIGN KEY (`fk_instituicao`) REFERENCES `consol`.`instituicao` (`id_instituicao`)
     ON DELETE CASCADE
 );
@@ -118,4 +104,14 @@ CREATE TABLE IF NOT EXISTS `consol`.`instituicao_familia` (
     FOREIGN KEY (`fk_instituicao`) REFERENCES `consol`.`instituicao` (`id_instituicao`) ON DELETE CASCADE,
     FOREIGN KEY (`fk_familia`) REFERENCES `consol`.`familia` (`id_familia`)
     ON DELETE CASCADE
+);
+
+select * from instituicao;
+INSERT INTO instituicao (nome_instituicao, cep, numero_imovel, descricao, foto_perfil)
+VALUES (
+    'nomeInstituicao_8445bcfcfc75',
+    'cep_f46e9c13930a',
+    'numeroImovel_e25ea247de25',
+    'descricao_f578e2d88fea',
+    'kansdjnasojncoinascoi'
 );
