@@ -5,7 +5,7 @@ USE `consol` ;
 
 
 CREATE TABLE IF NOT EXISTS `consol`.`familia` (
-  `id_familia` INT PRIMARY KEY NOT NULL auto_increment,
+  `id_familia` INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
   `nome` VARCHAR(60) NULL,
   `cep` VARCHAR(8) NULL,
   `numero_casa` INT NULL,
@@ -15,7 +15,7 @@ CREATE TABLE IF NOT EXISTS `consol`.`familia` (
 ENGINE = InnoDB;
 
 CREATE TABLE IF NOT EXISTS `consol`.`titular` (
-  `id_titular` INT PRIMARY KEY NOT NULL auto_increment,
+  `id_titular` INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
   `data_cadastro` DATE NULL,
   `nome` VARCHAR(60) NULL,
   `rg` VARCHAR(9) NOT NULL,
@@ -35,7 +35,7 @@ CREATE TABLE IF NOT EXISTS `consol`.`titular` (
 
 
 CREATE TABLE IF NOT EXISTS `consol`.`registroVisita` (
-  `id_registro_visita` INT PRIMARY KEY NOT NULL auto_increment,
+  `id_registro_visita` INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
   `data_visita` DATE NULL,
   `descricao` TEXT NULL,
   `fk_titular` INT NOT NULL,
@@ -72,11 +72,11 @@ CREATE TABLE IF NOT EXISTS `consol`.`instituicao` (
 );
 
 CREATE TABLE IF NOT EXISTS `consol`.`doacao` (
-  `id_doacoes` INT PRIMARY KEY NOT NULL auto_increment,
+  `id_doacao` INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
   `descricao` VARCHAR(200) NULL,
-  `status_doacao` CHAR(1) NULL,
+  `status_doacao` tinyint NULL,
   `data_doacao` DATETIME NULL,
-  `flag_doacao_entregue` VARCHAR(45) NULL,
+  `flag_doacao_entregue` tinyint NULL,
   `fk_instituicao` INT NOT NULL,
   `fk_titular` INT NOT NULL,
     FOREIGN KEY (`fk_instituicao`) REFERENCES `consol`.`instituicao` (`id_instituicao`) ON DELETE CASCADE,
@@ -84,7 +84,7 @@ CREATE TABLE IF NOT EXISTS `consol`.`doacao` (
 );
 
 CREATE TABLE IF NOT EXISTS `consol`.`usuario` (
-  `id_usuario` INT PRIMARY KEY NOT NULL auto_increment,
+  `id_usuario` INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
   `coordernador` TINYINT NULL,
   `nome_usuario` VARCHAR(60) NULL,
   `email` VARCHAR(70) NULL,
@@ -106,7 +106,6 @@ CREATE TABLE IF NOT EXISTS `consol`.`instituicao_familia` (
     ON DELETE CASCADE
 );
 
-select * from instituicao;
 INSERT INTO instituicao (nome_instituicao, cep, numero_imovel, descricao, foto_perfil)
 VALUES (
     'nomeInstituicao_8445bcfcfc75',
@@ -115,3 +114,5 @@ VALUES (
     'descricao_f578e2d88fea',
     'kansdjnasojncoinascoi'
 );
+
+select * from instituicao;
