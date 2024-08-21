@@ -76,7 +76,7 @@ CREATE TABLE IF NOT EXISTS `consol`.`doacao` (
   `descricao` VARCHAR(200) NULL,
   `status_doacao` tinyint NULL,
   `data_doacao` DATETIME NULL,
-  `flag_doacao_entregue` tinyint NULL,
+  `flag_doacao_entregue` VARCHAR(45) NULL,
   `fk_instituicao` INT NOT NULL,
   `fk_titular` INT NOT NULL,
     FOREIGN KEY (`fk_instituicao`) REFERENCES `consol`.`instituicao` (`id_instituicao`) ON DELETE CASCADE,
