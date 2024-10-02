@@ -85,12 +85,12 @@ CREATE TABLE IF NOT EXISTS `consol`.`doacao` (
 
 CREATE TABLE IF NOT EXISTS `consol`.`usuario` (
   `id_usuario` INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
-  `coordernador` TINYINT NULL,
-  `nome_usuario` VARCHAR(60) NULL,
-  `email` VARCHAR(70) NULL,
-  `senha` TEXT NULL,
-  `cpf` CHAR(11) NULL,
-  `flag_aprovado` TINYINT NULL,
+  `coordernador` TINYINT NOT NULL,
+  `nome_usuario` VARCHAR(60) NOT NULL,
+  `email` VARCHAR(70) NOT NULL,
+  `senha` TEXT NOT NULL,
+  `cpf` CHAR(11) NOT NULL,
+  `flag_aprovado` TINYINT NOT NULL,
   `fk_instituicao` INT NOT NULL,
     FOREIGN KEY (`fk_instituicao`) REFERENCES `consol`.`instituicao` (`id_instituicao`)
     ON DELETE CASCADE
