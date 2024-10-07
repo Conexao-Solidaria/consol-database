@@ -64,11 +64,11 @@ CREATE TABLE IF NOT EXISTS `consol`.`beneficio` (
 
 CREATE TABLE IF NOT EXISTS `consol`.`instituicao` (
   `id_instituicao` INT PRIMARY KEY NOT NULL auto_increment,
-  `nome_instituicao` VARCHAR(70) NULL,
-  `cep` CHAR(8) NULL,
-  `numero_imovel` VARCHAR(10) NULL,
-  `descricao` VARCHAR(255) NULL,
-  `foto_perfil` TEXT NULL
+  `nome_instituicao` VARCHAR(70) NOT NULL,
+  `cep` CHAR(8) NOT NULL,
+  `numero_imovel` VARCHAR(10) NOT NULL,
+  `descricao` VARCHAR(255) NOT NULL,
+  `foto_perfil` TEXT NOT NULL
 );
 
 CREATE TABLE IF NOT EXISTS `consol`.`doacao` (
