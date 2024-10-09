@@ -84,7 +84,7 @@ CREATE TABLE IF NOT EXISTS `consol`.`doacao` (
 
 CREATE TABLE IF NOT EXISTS `consol`.`usuario` (
   `id_usuario` INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
-  `coordernador` TINYINT NOT NULL,
+  `coordenador` TINYINT NOT NULL,
   `nome_usuario` VARCHAR(60) NOT NULL,
   `email` VARCHAR(70) NOT NULL,
   `senha` TEXT NOT NULL,
