@@ -27,16 +27,16 @@ CREATE TABLE IF NOT EXISTS `consol`.`titular` (
   `trabalhando` TINYINT NOT NULL,
   `ocupacao` VARCHAR(45) NOT NULL,
   `fk_familia` INT NOT NULL,
-  `referencia_s3` TEXT NOT NULL,
+  `referencia_s3` TEXT NULL,
   FOREIGN KEY (`fk_familia`)
   REFERENCES `familia` (`id_familia`)
   ON DELETE CASCADE
 );
 
 CREATE TABLE IF NOT EXISTS `consol`.`despesa` (
-  `id_despesa` INT PRIMARY KEY auto_increment,
-  `tipo` VARCHAR(45) NULL,
-  `gasto` DOUBLE(7,2) NULL,
+  `id_despesa` INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
+  `tipo` VARCHAR(45) NOT NULL,
+  `gasto` DOUBLE(7,2) NOT NULL,
   `fk_familia` INT NOT NULL,
     FOREIGN KEY (`fk_familia`) REFERENCES `consol`.`familia` (`id_familia`)
     ON DELETE CASCADE
