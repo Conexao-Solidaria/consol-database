@@ -3,7 +3,6 @@ DROP DATABASE IF EXISTS `consol` ;
 CREATE DATABASE IF NOT EXISTS `consol` DEFAULT CHARACTER SET utf8 ;
 USE `consol` ;
 
-
 CREATE TABLE IF NOT EXISTS `consol`.`familia` (
   `id_familia` INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
   `nome` VARCHAR(60) NULL,
@@ -33,16 +32,6 @@ CREATE TABLE IF NOT EXISTS `consol`.`titular` (
   ON DELETE CASCADE
 );
 
-
-CREATE TABLE IF NOT EXISTS `consol`.`registroVisita` (
-  `id_registro_visita` INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
-  `data_visita` DATE NULL,
-  `descricao` TEXT NULL,
-  `fk_titular` INT NOT NULL,
-    FOREIGN KEY (`fk_titular`) REFERENCES `consol`.`titular` (`id_titular`)
-    ON DELETE CASCADE
-);
-
 CREATE TABLE IF NOT EXISTS `consol`.`despesa` (
   `id_despesa` INT PRIMARY KEY auto_increment,
   `tipo` VARCHAR(45) NULL,
@@ -51,7 +40,6 @@ CREATE TABLE IF NOT EXISTS `consol`.`despesa` (
     FOREIGN KEY (`fk_familia`) REFERENCES `consol`.`familia` (`id_familia`)
     ON DELETE CASCADE
 );
-
 
 CREATE TABLE IF NOT EXISTS `consol`.`beneficio` (
   `id_beneficio` INT PRIMARY KEY auto_increment,
@@ -94,7 +82,6 @@ CREATE TABLE IF NOT EXISTS `consol`.`usuario` (
     FOREIGN KEY (`fk_instituicao`) REFERENCES `consol`.`instituicao` (`id_instituicao`)
     ON DELETE CASCADE
 );
-
 
 CREATE TABLE IF NOT EXISTS `consol`.`instituicao_familia` (
   `id_familia_instituicao` INT PRIMARY KEY auto_increment,
