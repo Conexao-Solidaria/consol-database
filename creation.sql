@@ -55,8 +55,7 @@ CREATE TABLE IF NOT EXISTS `consol`.`instituicao` (
   `nome_instituicao` VARCHAR(70) NOT NULL,
   `cep` CHAR(8) NOT NULL,
   `numero_imovel` VARCHAR(10) NOT NULL,
-  `descricao` VARCHAR(255) NOT NULL,
-  `foto_perfil` TEXT NOT NULL
+  `descricao` VARCHAR(255) NOT NULL
 );
 
 CREATE TABLE IF NOT EXISTS `consol`.`doacao` (
@@ -84,7 +83,7 @@ CREATE TABLE IF NOT EXISTS `consol`.`usuario` (
 );
 
 CREATE TABLE IF NOT EXISTS `consol`.`instituicao_familia` (
-  `id_familia_instituicao` INT PRIMARY KEY auto_increment,
+  `id_familia_instituicao` INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
   `fk_instituicao` INT NOT NULL,
   `fk_familia` INT NOT NULL,
     FOREIGN KEY (`fk_instituicao`) REFERENCES `consol`.`instituicao` (`id_instituicao`) ON DELETE CASCADE,
