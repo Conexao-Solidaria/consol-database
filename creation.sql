@@ -15,18 +15,19 @@ ENGINE = InnoDB;
 
 CREATE TABLE IF NOT EXISTS `consol`.`titular` (
   `id_titular` INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
-  `data_cadastro` DATE NULL,
-  `nome` VARCHAR(60) NULL,
-  `rg` VARCHAR(9) NOT NULL,
-  `cpf` VARCHAR(11) NULL,
-  `data_nascimento` DATE NULL,
-  `telefone1` VARCHAR(11) NULL,
-  `telefone2` VARCHAR(11) NULL,
-  `estado_civil` VARCHAR(15) NULL,
-  `escolaridade` VARCHAR(30) NULL,
-  `trabalhando` TINYINT NULL,
-  `ocupacao` VARCHAR(45) NULL,
+  `data_cadastro` DATE NOT NULL,
+  `nome` VARCHAR(60) NOT NULL,
+  `rg` VARCHAR(9) NULL,
+  `cpf` VARCHAR(11) NOT NULL,
+  `data_nascimento` DATE NOT NULL,
+  `telefone1` VARCHAR(11) NOT NULL,
+  `telefone2` VARCHAR(11) NOT NULL,
+  `estado_civil` VARCHAR(15) NOT NULL,
+  `escolaridade` VARCHAR(30) NOT NULL,
+  `trabalhando` TINYINT NOT NULL,
+  `ocupacao` VARCHAR(45) NOT NULL,
   `fk_familia` INT NOT NULL,
+  `referencia_s3` TEXT NOT NULL,
   FOREIGN KEY (`fk_familia`)
   REFERENCES `familia` (`id_familia`)
   ON DELETE CASCADE
