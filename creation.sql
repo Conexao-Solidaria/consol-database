@@ -5,11 +5,11 @@ USE `consol` ;
 
 CREATE TABLE IF NOT EXISTS `consol`.`familia` (
   `id_familia` INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
-  `nome` VARCHAR(60) NULL,
-  `cep` VARCHAR(8) NULL,
-  `numero_casa` INT NULL,
-  `renda` DOUBLE(8,2) NULL,
-  `flag_retirada` TINYINT NULL
+  `nome` VARCHAR(60) NOT NULL,
+  `cep` VARCHAR(8) NOT NULL,
+  `numero_casa` INT NOT NULL,
+  `renda` DOUBLE(8,2) NOT NULL,
+  `flag_retirada` TINYINT NOT NULL
 )
 ENGINE = InnoDB;
 
