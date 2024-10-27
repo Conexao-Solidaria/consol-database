@@ -44,8 +44,8 @@ CREATE TABLE IF NOT EXISTS `consol`.`despesa` (
 
 CREATE TABLE IF NOT EXISTS `consol`.`beneficio` (
   `id_beneficio` INT PRIMARY KEY auto_increment,
-  `nome` VARCHAR(45) NULL,
-  `valor` DOUBLE(7,2) NULL,
+  `nome` VARCHAR(45) NOT NULL,
+  `valor` DOUBLE(7,2) NOT NULL,
   `fk_titular` INT NOT NULL,
     FOREIGN KEY (`fk_titular`) REFERENCES `consol`.`titular` (`id_titular`)
     ON DELETE CASCADE
