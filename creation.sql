@@ -1,104 +1,60 @@
-DROP DATABASE IF EXISTS `consol` ;
+-- Inserindo registros na tabela familia
+INSERT INTO familia (nome, cep, numero_casa, renda, flag_retirada, data_cadastro)
+VALUES 
+('Familia Silva', '12345678', 10, 1500.00, 1, '2024-01-15'),
+('Familia Souza', '87654321', 25, 2500.50, 0, '2024-02-20'),
+('Familia Oliveira', '11223344', 5, 1800.75, 1, '2024-03-01'),
+('Familia Costa', '55667788', 30, 3200.00, 0, '2024-03-05');
 
-CREATE DATABASE IF NOT EXISTS `consol` DEFAULT CHARACTER SET utf8 ;
-USE `consol` ;
+-- Inserindo registros na tabela titular
+INSERT INTO titular (nome, rg, cpf, data_nascimento, telefone1, telefone2, estado_civil, escolaridade, trabalhando, ocupacao, fk_familia)
+VALUES 
+('João da Silva', '123456789', '11122233344', '1980-05-22', '11988887777', NULL, 'Casado', 'Ensino Médio', 1, 'Motorista', 1),
+('Maria Souza', '987654321', '55566677788', '1992-10-12', '11977776666', '11955554444', 'Solteiro', 'Ensino Superior', 0, 'Estudante', 2),
+('Carlos Oliveira', '123456780', '22233344455', '2015-06-15', NULL, NULL, 'Solteiro', 'Ensino Fundamental', 0, 'Estudante', 3),
+('Ana Costa', '123456781', '33344455566', '2013-09-21', NULL, NULL, 'Solteiro', 'Ensino Fundamental', 0, 'Estudante', 4);
 
-CREATE TABLE IF NOT EXISTS `consol`.`familia` (
-  `id_familia` INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
-  `nome` VARCHAR(60) NOT NULL,
-  `cep` VARCHAR(8) NOT NULL,
-  `numero_casa` INT NOT NULL,
-  `renda` DOUBLE(8,2) NOT NULL,
-  `flag_retirada` TINYINT NOT NULL
-)
-ENGINE = InnoDB;
+-- Inserindo registros na tabela despesa
+INSERT INTO despesa (tipo, gasto, fk_familia)
+VALUES 
+('Aluguel', 600.00, 1),
+('Supermercado', 300.50, 1),
+('Transporte', 150.75, 2),
+('Educação', 200.00, 3),
+('Saúde', 100.00, 4);
 
-CREATE TABLE IF NOT EXISTS `consol`.`titular` (
-  `id_titular` INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
-  `data_cadastro` DATE NOT NULL,
-  `nome` VARCHAR(60) NOT NULL,
-  `rg` VARCHAR(9) NULL,
-  `cpf` VARCHAR(11) NOT NULL,
-  `data_nascimento` DATE NOT NULL,
-  `telefone1` VARCHAR(11) NOT NULL,
-  `telefone2` VARCHAR(11) NOT NULL,
-  `estado_civil` VARCHAR(15) NOT NULL,
-  `escolaridade` VARCHAR(30) NOT NULL,
-  `trabalhando` TINYINT NOT NULL,
-  `ocupacao` VARCHAR(45) NOT NULL,
-  `fk_familia` INT NOT NULL,
-  `referencia_s3` TEXT NULL,
-  FOREIGN KEY (`fk_familia`)
-  REFERENCES `familia` (`id_familia`)
-  ON DELETE CASCADE
-);
+-- Inserindo registros na tabela beneficio
+INSERT INTO beneficio (nome, valor, fk_titular)
+VALUES 
+('Bolsa Família', 300.00, 1),
+('Vale Alimentação', 150.00, 2),
+('Auxílio Criança', 200.00, 3),
+('Bolsa Estudo', 250.00, 4);
 
-CREATE TABLE IF NOT EXISTS `consol`.`despesa` (
-  `id_despesa` INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
-  `tipo` VARCHAR(45) NOT NULL,
-  `gasto` DOUBLE(7,2) NOT NULL,
-  `fk_familia` INT NOT NULL,
-    FOREIGN KEY (`fk_familia`) REFERENCES `consol`.`familia` (`id_familia`)
-    ON DELETE CASCADE
-);
+-- Inserindo registros na tabela instituicao
+INSERT INTO instituicao (nome_instituicao, cep, numero_imovel, descricao)
+VALUES 
+('Instituição de Caridade A', '12345678', '123', 'Descrição da Instituição A'),
+('Instituição de Caridade B', '87654321', '456', 'Descrição da Instituição B');
 
-CREATE TABLE IF NOT EXISTS `consol`.`beneficio` (
-  `id_beneficio` INT PRIMARY KEY auto_increment,
-  `nome` VARCHAR(45) NOT NULL,
-  `valor` DOUBLE(7,2) NOT NULL,
-  `fk_titular` INT NOT NULL,
-    FOREIGN KEY (`fk_titular`) REFERENCES `consol`.`titular` (`id_titular`)
-    ON DELETE CASCADE
-);
+-- Inserindo registros na tabela doacao
+INSERT INTO doacao (descricao, data_doacao, flag_doacao_entregue, fk_instituicao, fk_titular)
+VALUES 
+('Cesta básica', '2024-01-15 10:30:00', 1, 1, 1),
+('Roupa de inverno', '2024-02-18 14:45:00', 0, 2, 2),
+('Material escolar', '2024-03-01 09:00:00', 1, 1, 3),
+('Brinquedos', '2024-03-10 11:30:00', 0, 2, 4);
 
-CREATE TABLE IF NOT EXISTS `consol`.`instituicao` (
-  `id_instituicao` INT PRIMARY KEY NOT NULL auto_increment,
-  `nome_instituicao` VARCHAR(70) NOT NULL,
-  `cep` CHAR(8) NOT NULL,
-  `numero_imovel` VARCHAR(10) NOT NULL,
-  `descricao` VARCHAR(255) NOT NULL
-);
+-- Inserindo registros na tabela usuario
+INSERT INTO usuario (coordenador, nome_usuario, email, senha, cpf, flag_aprovado, fk_instituicao)
+VALUES 
+(1, 'Ana Coordenadora', 'ana@instituicao.org', 'senhaSegura123', '22233344455', 1, 1),
+(0, 'Carlos Assistente', 'carlos@instituicao.org', 'senhaForte456', '33344455566', 1, 2);
 
-CREATE TABLE IF NOT EXISTS `consol`.`doacao` (
-  `id_doacao` INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
-  `descricao` VARCHAR(200) NOT NULL,
-  `data_doacao` DATETIME NOT NULL,
-  `flag_doacao_entregue` TINYINT NOT NULL,
-  `fk_instituicao` INT NOT NULL,
-  `fk_titular` INT NOT NULL,
-    FOREIGN KEY (`fk_instituicao`) REFERENCES `consol`.`instituicao` (`id_instituicao`) ON DELETE CASCADE,
-    FOREIGN KEY (`fk_titular`) REFERENCES `consol`.`titular` (`id_titular` ) ON DELETE CASCADE
-);
-
-CREATE TABLE IF NOT EXISTS `consol`.`usuario` (
-  `id_usuario` INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
-  `coordenador` TINYINT NOT NULL,
-  `nome_usuario` VARCHAR(60) NOT NULL,
-  `email` VARCHAR(70) NOT NULL,
-  `senha` TEXT NOT NULL,
-  `cpf` CHAR(11) NOT NULL,
-  `flag_aprovado` TINYINT NOT NULL,
-  `fk_instituicao` INT NOT NULL,
-    FOREIGN KEY (`fk_instituicao`) REFERENCES `consol`.`instituicao` (`id_instituicao`)
-    ON DELETE CASCADE
-);
-
-CREATE TABLE IF NOT EXISTS `consol`.`instituicao_familia` (
-  `id_familia_instituicao` INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
-  `fk_instituicao` INT NOT NULL,
-  `fk_familia` INT NOT NULL,
-    FOREIGN KEY (`fk_instituicao`) REFERENCES `consol`.`instituicao` (`id_instituicao`) ON DELETE CASCADE,
-    FOREIGN KEY (`fk_familia`) REFERENCES `consol`.`familia` (`id_familia`)
-    ON DELETE CASCADE
-);
-
-INSERT INTO instituicao (nome_instituicao, cep, numero_imovel, descricao, foto_perfil)
-VALUES (
-    'nomeInstituicao_8445bcfcfc75',
-    '01234567',
-    '2524725',
-    'descricao_f578e2d88fea',
-    'kansdjnasojncoinascoi'
-);
-
-select * from instituicao;
+-- Inserindo registros na tabela instituicao_familia
+INSERT INTO instituicao_familia (fk_instituicao, fk_familia)
+VALUES 
+(1, 1),
+(1, 2),
+(2, 3),
+(2, 4);
