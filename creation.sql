@@ -75,7 +75,7 @@ CREATE TABLE IF NOT EXISTS `consol`.`usuario` (
   `nome_usuario` VARCHAR(60) NOT NULL,
   `email` VARCHAR(70) NOT NULL,
   `senha` TEXT NOT NULL,
-  `cpf` CHAR(11) NOT NULL,
+  `cpf` VARCHAR(11) NOT NULL,
   `flag_aprovado` TINYINT NOT NULL,
   `fk_instituicao` INT NOT NULL,
     FOREIGN KEY (`fk_instituicao`) REFERENCES `consol`.`instituicao` (`id_instituicao`)
