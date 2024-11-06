@@ -42,6 +42,3 @@ INSERT INTO `consol`.`instituicao_familia` (`fk_instituicao`, `fk_familia`) VALU
 (1, 1),
 (2, 2),
 (1, 3);
-
--- Verificando dados inseridos na tabela `instituicao`
-SELECT * FROM `consol`.`instituicao`;

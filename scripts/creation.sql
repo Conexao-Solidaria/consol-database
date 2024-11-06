@@ -1,7 +1,3 @@
-DROP DATABASE IF EXISTS `consol` ;
-CREATE DATABASE IF NOT EXISTS `consol` DEFAULT CHARACTER SET utf8 ;
-USE `consol` ;
-
 CREATE TABLE IF NOT EXISTS `consol`.`familia` (
   `id_familia` INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
   `nome` VARCHAR(60) NOT NULL,
@@ -10,8 +6,7 @@ CREATE TABLE IF NOT EXISTS `consol`.`familia` (
   `renda` DOUBLE(8,2) NOT NULL,
   `flag_retirada` TINYINT NOT NULL,
   `data_cadastro` DATE NOT NULL
-)
-ENGINE = InnoDB;
+);
 
 CREATE TABLE IF NOT EXISTS `consol`.`titular` (
   `id_titular` INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
@@ -98,5 +93,3 @@ VALUES (
     '2524725',
     'descricao_f578e2d88fea'
 );
-
-select * from instituicao;
