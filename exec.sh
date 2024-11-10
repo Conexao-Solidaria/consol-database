@@ -1,1 +1,1 @@
-docker exec -it docker-db-1 mysql -u root -p consol
+docker exec -it consol-db mysql -u root -p consol
